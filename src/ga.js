@@ -2,60 +2,58 @@ let preserved = [];
 let generation = 1;
 
 function generateRow() {
-    let avgscore = 0;
+  let avgscore = 0;
 
-    for (let instance of savedInstances) {
-        avgscore += instance.score;
-    }
+  for (let instance of savedInstances) {
+    avgscore += instance.score;
+  }
 
-    console.log(avgscore);
-
-    avgscore = parseFloat(avgscore / savedInstances.length).toFixed(2);
-    addData({ x: generation, y: parseFloat(avgscore) });
-    ++generation;
+  avgscore = parseFloat(avgscore / savedInstances.length).toFixed(2);
+  addData({ x: generation, y: parseFloat(avgscore) });
+  ++generation;
 }
 
 function nextGen() {
-    calculateFitness();
+  calculateFitness();
 
-    for (let i = 0; i < options.totalInstances; ++i) {
-        instances[i] = selectInstance();
-    }
+  for (let i = 0; i < options.totalInstances; ++i) {
+    instances[i] = selectInstance();
+  }
 
-    generateRow();
+  generateRow();
 
-    for (let i = 0; i < options.totalInstances; ++i) {
-        savedInstances[i].dispose();
-    }
+  for (let i = 0; i < options.totalInstances; ++i) {
+    savedInstances[i].dispose();
+  }
 
-    savedInstances = [];
+  savedInstances = [];
 }
 
 function selectInstance() {
-    let index = 0;
-    let r = random(1);
-    while (r > 0) {
-        r = r - savedInstances[index].fitness;
-        index++;
-    }
-    index--;
-    const instance = savedInstances[index];
-    const child = new Instance(instance.brain);
-    child.mutate();
+  let index = 0;
+  let r = random(1);
+  while (r > 0) {
+    r = r - savedInstances[index].fitness;
+    index++;
+  }
+  index--;
+  const instance = savedInstances[index];
+  const child = new Instance(instance.brain);
+  child.mutate();
 
-    preserved.push(index);
+  preserved.push(index);
 
-    return child;
+  return child;
 }
 
 function calculateFitness() {
-    let sum = 0;
+  let sum = 0;
 
-    for (let instance of savedInstances) {
-        sum += instance.score;
-    }
+  for (let instance of savedInstances) {
+    sum += instance.score;
+  }
 
-    for (let instance of savedInstances) {
-        instance.fitness = instance.score / sum;
-    }
+  for (let instance of savedInstances) {
+    instance.fitness = instance.score / sum;
+  }
 }

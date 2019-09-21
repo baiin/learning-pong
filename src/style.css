@@ -1,12 +1,43 @@
-body {
-    background-color: #2f2f2f;
+#body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #0a0a0a;
 }
 
-.canvas-container {
-    background-color: white;
-    height: 400px;
-    width: 640px;
-    position: fixed;
-    top: 400px;
-    left: 0;
+#canvas {
+  border: 10px solid rgb(255, 187, 0);
+  border-radius: 5px;
+}
+
+#title {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+#options {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  color: white;
+  margin: 20px;
+}
+
+#header {
+  height: 60px;
+  width: 100%;
+  background-color: rgb(46, 156, 114);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+#myChart {
+  background-color: white;
 }
