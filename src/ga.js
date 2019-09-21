@@ -2,58 +2,60 @@ let preserved = [];
 let generation = 1;
 
 function generateRow() {
-  let avgscore = 0;
+    let avgscore = 0;
 
-  for (let player of savedPlayers) {
-    avgscore += player.score;
-  }
+    for (let instance of savedInstances) {
+        avgscore += instance.score;
+    }
 
-  avgscore = parseFloat(avgscore / savedPlayers.length).toFixed(2);
-  addData({ x: generation, y: parseFloat(avgscore) });
-  ++generation;
+    console.log(avgscore);
+
+    avgscore = parseFloat(avgscore / savedInstances.length).toFixed(2);
+    addData({ x: generation, y: parseFloat(avgscore) });
+    ++generation;
 }
 
 function nextGen() {
-  calculateFitness();
+    calculateFitness();
 
-  for (let i = 0; i < totalPlayers; ++i) {
-    players[i] = selectPlayer();
-  }
+    for (let i = 0; i < options.totalInstances; ++i) {
+        instances[i] = selectInstance();
+    }
 
-  generateRow();
+    generateRow();
 
-  for (let i = 0; i < totalPlayers; ++i) {
-    savedPlayers[i].dispose();
-  }
+    for (let i = 0; i < options.totalInstances; ++i) {
+        savedInstances[i].dispose();
+    }
 
-  savedPlayers = [];
+    savedInstances = [];
 }
 
-function selectPlayer() {
-  let index = 0;
-  let r = random(1);
-  while (r > 0) {
-    r = r - savedPlayers[index].fitness;
-    index++;
-  }
-  index--;
-  let player = savedPlayers[index];
-  let child = new Player(player.brain);
-  child.mutate();
+function selectInstance() {
+    let index = 0;
+    let r = random(1);
+    while (r > 0) {
+        r = r - savedInstances[index].fitness;
+        index++;
+    }
+    index--;
+    const instance = savedInstances[index];
+    const child = new Instance(instance.brain);
+    child.mutate();
 
-  preserved.push(index);
+    preserved.push(index);
 
-  return child;
+    return child;
 }
 
 function calculateFitness() {
-  let sum = 0;
+    let sum = 0;
 
-  for (let palyer of savedPlayers) {
-    sum += palyer.score;
-  }
+    for (let instance of savedInstances) {
+        sum += instance.score;
+    }
 
-  for (let palyer of savedPlayers) {
-    palyer.fitness = palyer.score / sum;
-  }
+    for (let instance of savedInstances) {
+        instance.fitness = instance.score / sum;
+    }
 }

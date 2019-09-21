@@ -1,12 +1,12 @@
-td {
-  border: 1px solid black;
-  padding: 5px;
+body {
+    background-color: #2f2f2f;
 }
 
 .canvas-container {
-  height: 400px;
-  width: 640px;
-  position: fixed;
-  top: 0;
-  left: 640px;
+    background-color: white;
+    height: 400px;
+    width: 640px;
+    position: fixed;
+    top: 400px;
+    left: 0;
 }
