@@ -7,6 +7,10 @@
   background-color: #0a0a0a;
 }
 
+#body > div {
+  margin-bottom: 20px;
+}
+
 #canvas {
   border: 10px solid rgb(255, 187, 0);
   border-radius: 5px;
@@ -24,7 +28,6 @@
   align-items: stretch;
   justify-content: space-evenly;
   color: white;
-  margin: 20px;
 }
 
 #header {
@@ -40,4 +43,6 @@
 
 #myChart {
   background-color: white;
+  border: 10px solid white;
+  border-radius: 5px;
 }

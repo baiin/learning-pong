@@ -17,8 +17,8 @@ function initChart() {
         {
           label: "Gen Scores",
           data: [],
-          backgroundColor: `rgba(255, 187, 0, 0.2)`,
-          borderColor: `rgba(255, 187, 0, 0.2)`,
+          backgroundColor: `rgba(255, 187, 0)`,
+          borderColor: `rgba(255, 187, 0)`,
           fill: true
         }
       ]
