@@ -1,13 +1,12 @@
 class Player {
   constructor(brain) {
     this.rectWidth = 10;
-    this.rectHeight = 80;
     this.ballSize = 10;
-    this.ballSpeed = 5;
+    this.ballSpeed = 8;
     this.rectSpeed = 5;
 
     this.rectX = 30;
-    this.rectY = random(0, height - this.rectHeight);
+    this.rectY = random(0, height - rectHeight);
 
     this.ballX = random(200, 450);
     this.ballY = random(10, 380);
@@ -31,7 +30,7 @@ class Player {
     if (brain) {
       this.brain = brain.copy();
     } else {
-      this.brain = new NeuralNetwork(9, 12, 2);
+      this.brain = new NeuralNetwork(9, 9, 2);
     }
   }
 
@@ -43,8 +42,8 @@ class Player {
     noStroke();
     fill(this.r, this.g, this.b);
     rect(this.ballX, this.ballY, this.ballSize, this.ballSize);
-    rect(this.rectX, this.rectY, this.rectWidth, this.rectHeight);
-    rect(this.meX, this.meY, this.rectWidth, this.rectHeight);
+    rect(this.rectX, this.rectY, this.rectWidth, rectHeight);
+    rect(this.meX, this.meY, this.rectWidth, rectHeight);
   }
 
   update() {
@@ -99,7 +98,7 @@ class Player {
     if (
       this.meX + this.rectWidth < this.ballX ||
       this.meX > this.ballX + this.ballSize ||
-      this.meY + this.rectHeight < this.ballY ||
+      this.meY + rectHeight < this.ballY ||
       this.meY > this.ballY + this.ballSize
     ) {
       // no collision
@@ -117,7 +116,7 @@ class Player {
     if (
       this.rectX + this.rectWidth < this.ballX ||
       this.rectX > this.ballX + this.ballSize ||
-      this.rectY + this.rectHeight < this.ballY ||
+      this.rectY + rectHeight < this.ballY ||
       this.rectY > this.ballY + this.ballSize
     ) {
       // no collision
@@ -144,8 +143,8 @@ class Player {
 
     if (this.meY <= 0) {
       this.meY = 0;
-    } else if (this.meY + this.rectHeight >= height) {
-      this.meY = height - this.rectHeight;
+    } else if (this.meY + rectHeight >= height) {
+      this.meY = height - rectHeight;
     }
   }
 
@@ -162,8 +161,8 @@ class Player {
 
     if (this.rectY <= 0) {
       this.rectY = 0;
-    } else if (this.rectY + this.rectHeight >= height) {
-      this.rectY = height - this.rectHeight;
+    } else if (this.rectY + rectHeight >= height) {
+      this.rectY = height - rectHeight;
     }
   }
 
@@ -174,7 +173,7 @@ class Player {
   think() {
     let inputone = [];
     inputone[0] = this.rectY / height;
-    inputone[1] = this.rectHeight / height;
+    inputone[1] = rectHeight / height;
     inputone[2] = this.ballX / width;
     inputone[3] = this.ballY / height;
     inputone[4] = this.ballXDir;

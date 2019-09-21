@@ -1,0 +1,12 @@
+td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.canvas-container {
+  height: 400px;
+  width: 640px;
+  position: fixed;
+  top: 0;
+  left: 640px;
+}
